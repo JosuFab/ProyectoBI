@@ -10,7 +10,7 @@ Una plataforma de comercio electrónico genera grandes volúmenes de datos en su
 
 Este proyecto implementa una solución integral de Inteligencia de Negocios que centraliza, transforma y analiza la información operacional de la plataforma, con el objetivo de responder preguntas clave del negocio relacionadas con ingresos, rentabilidad, comportamiento de compra, devoluciones y eficiencia logística.
 --
-## 👥 Integrantes del grupo
+##  Integrantes del grupo
 
 | Nombre                |    Carné |
 |------------------------|-------|
@@ -22,7 +22,7 @@ Este proyecto implementa una solución integral de Inteligencia de Negocios que 
 
 ---
 
-## 🏗️ Arquitectura de la solución
+##  Arquitectura de la solución
 
 ```
 ┌─────────────────────┐
@@ -70,7 +70,7 @@ Este proyecto implementa una solución integral de Inteligencia de Negocios que 
 
 ---
 
-## 📁 Estructura del repositorio
+##  Estructura del repositorio
 
 ```
 ProyectoBI/
@@ -163,7 +163,7 @@ Luego conectar Metabase a la base de datos del DW en MySQL con las credenciales 
 
 ---
 
-## ❓ Preguntas de negocio respondidas
+##  Preguntas de negocio respondidas
 
 1. ¿Cuáles categorías, marcas y canales digitales generan mayor volumen de pedidos, ingresos y margen?
 2. ¿Qué productos presentan la mayor tasa de devolución y qué impacto tienen en la rentabilidad?
@@ -174,7 +174,7 @@ Luego conectar Metabase a la base de datos del DW en MySQL con las credenciales 
 
 ---
 
-## 📊 KPIs implementados
+##  KPIs implementados
 
 | KPI | Fórmula |
 |-----|---------|
@@ -190,7 +190,7 @@ Luego conectar Metabase a la base de datos del DW en MySQL con las credenciales 
 
 ---
 
-## 📝 Notas
+##  Notas
 
 - Los datos utilizados en este proyecto son **sintéticos** y fueron generados con fines académicos.
 - El historial de commits refleja la participación de todos los integrantes del grupo.
