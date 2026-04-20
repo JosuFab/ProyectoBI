@@ -38,10 +38,10 @@ INSERT INTO detalle_pedido (id_Pedido, id_Producto, cantidad, costo_Unitario, pr
 (2, 2, 1, 70.00, 120.00, 120.00),
 (3, 3, 1, 600.00, 800.00, 800.00);
 
-INSERT INTO envio (id_pedido, id_operador, fecha_envio, fecha_entrega, direccion, region, estado_envio) VALUES
-(1, 1, '2024-11-25', '2024-11-27', 'San Jose Centro', 'Central', 'Entregado'),
-(2, 2, '2024-11-26', '2024-11-29', 'Alajuela Centro', 'Central', 'En camino'),
-(3, 1, '2024-12-11', '2024-12-15', 'Cartago Centro', 'Central', 'Pendiente');
+INSERT INTO envio (id_pedido, id_operador, fecha_envio, fecha_entrega, fecha_entrega_estimada, direccion, region, estado_envio) VALUES
+(1, 1, '2024-11-25', '2024-11-27', '2024-11-28', 'San Jose Centro', 'Central', 'Entregado'),
+(2, 2, '2024-11-26', '2024-11-29', '2024-11-28', 'Alajuela Centro', 'Central', 'En camino'),
+(3, 1, '2024-12-11', '2024-12-15', '2024-12-14', 'Cartago Centro', 'Central', 'Pendiente');
 
 INSERT INTO devolucion (id_Detalle, fecha_Devolucion, motivo, cantidad_Devuelta) VALUES
 (2, '2024-11-30', 'Producto defectuoso', 1);

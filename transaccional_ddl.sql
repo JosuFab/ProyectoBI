@@ -174,6 +174,7 @@ CREATE TABLE `envio` (
   `id_operador` int NOT NULL,
   `fecha_envio` date NOT NULL,
   `fecha_entrega` date NOT NULL,
+  `fecha_entrega_estimada` date NOT NULL,
   `direccion` varchar(50) NOT NULL,
   `region` varchar(30) NOT NULL,
   `estado_envio` varchar(20) NOT NULL,
