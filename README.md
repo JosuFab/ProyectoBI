@@ -1,4 +1,4 @@
-# 🛒 ProyectoBI — Plataforma de Comercio Electrónico
+#  ProyectoBI — Plataforma de Comercio Electrónico
 
 > **TI6900 - Inteligencia de Negocios · I Semestre 2026**  
 > Instituto Tecnológico de Costa Rica  
@@ -6,7 +6,7 @@
 
 ---
 
-## 📋 Descripción del problema
+##  Descripción del problema
 
 Una plataforma de comercio electrónico genera grandes volúmenes de datos en sus operaciones diarias de ventas, logística, devoluciones y marketing. Sin embargo, la información se encuentra dispersa y no integrada, lo que impide obtener una visión completa del negocio y dificulta la toma de decisiones basada en datos.
 
@@ -14,7 +14,7 @@ Este proyecto implementa una solución integral de Inteligencia de Negocios que 
 
 ---
 
-## 👥 Integrantes del grupo
+##  Integrantes del grupo
 
 | Nombre | Carné |
 |--------|-------|
@@ -26,7 +26,7 @@ Este proyecto implementa una solución integral de Inteligencia de Negocios que 
 
 ---
 
-## 🏗️ Arquitectura de la solución
+##  Arquitectura de la solución
 
 ```
 ┌─────────────────────┐
@@ -62,7 +62,7 @@ Este proyecto implementa una solución integral de Inteligencia de Negocios que 
 
 ---
 
-## 🛠️ Herramientas utilizadas
+##  Herramientas utilizadas
 
 | Herramienta | Tipo | Uso en el proyecto |
 |-------------|------|--------------------|
@@ -80,36 +80,29 @@ Este proyecto implementa una solución integral de Inteligencia de Negocios que 
 ProyectoBI/
 │
 ├── 📂 datos/
-│   ├── marca.csv
-│   ├── categoria.csv
-│   ├── producto.csv
-│   ├── cliente.csv
-│   ├── pedido.csv
-│   ├── detalle_pedido.csv
-│   ├── envio.csv
-│   ├── campania.csv
-│   ├── operador_logistico.csv
-│   └── devolucion.csv
+│   ├── DATOS PROYECTO 1.zip          # Datos del modelo transaccional
+│   └── DIM_FILES.zip                 # Datos del modelo dimensional
 │
 ├── 📂 sql/
-│   ├── transaccional_ddl.sql       # Creación del modelo transaccional
-│   ├── transaccional_dml.sql       # Inserción de datos de prueba
-│   └── dimensional_ddl.sql         # Creación del modelo dimensional (DW)
+│   ├── transaccional_ddl.sql         # Creación del modelo transaccional
+│   ├── transaccional_dml.sql         # Inserción de datos
+│   └── ETL_TO_MYSQL.sql              # Script SQL generado por el ETL
 │
 ├── 📂 etl/
-│   └── easymorph_proyecto.morph    # Proyecto ETL en EasyMorph
+│   └── Proyecto_BI_Final.morph       # Proyecto ETL en EasyMorph
 │
 ├── 📂 diagramas/
 │   ├── Diagrama Entidad Relación.png
-│   └── Modelo Dimensional Proyecto BI.png
+│   ├── Modelo Dimensional Proyecto BI.png
+│   └── capturasProyectoBI.docx       # Evidencia de ejecución del ETL
 │
-├── 📄 ProyectoBI.pdf               # Informe técnico del proyecto
+├── 📄 ProyectoBI.pdf                 # Informe técnico del proyecto
 └── 📄 README.md
 ```
 
 ---
 
-## ▶️ Instrucciones de ejecución
+##  Instrucciones de ejecución
 
 ### 1. Requisitos previos
 
@@ -126,7 +119,7 @@ source sql/transaccional_ddl.sql;
 source sql/transaccional_dml.sql;
 ```
 
-O bien, cargar los datos desde los archivos CSV de la carpeta `/datos/` usando:
+O cargar los datos desde los archivos CSV contenidos en `datos/DATOS PROYECTO 1.zip`:
 
 ```sql
 LOAD DATA INFILE 'ruta/al/archivo.csv'
@@ -137,20 +130,16 @@ LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 ```
 
-### 3. Configurar el Data Warehouse
-
-```sql
-source sql/dimensional_ddl.sql;
-```
-
-### 4. Ejecutar el ETL
+### 3. Ejecutar el ETL
 
 1. Abrir EasyMorph
-2. Cargar el archivo `etl/easymorph_proyecto.morph`
+2. Cargar el archivo `etl/Proyecto_BI_Final.morph`
 3. Verificar las conexiones a la base de datos fuente y destino
 4. Ejecutar el flujo completo
 
-### 5. Configurar Metabase
+> El script `sql/ETL_TO_MYSQL.sql` contiene el resultado de la carga generada por EasyMorph y puede ejecutarse directamente si no se desea correr el ETL manualmente.
+
+### 4. Configurar Metabase
 
 **Opción A — con archivo JAR:**
 ```bash
@@ -163,11 +152,11 @@ Abrir el navegador en `http://localhost:3000`
 docker run -d -p 3000:3000 --name metabase metabase/metabase
 ```
 
-Luego conectar Metabase a la base de datos del DW en MySQL con las credenciales correspondientes.
+Conectar Metabase a la base de datos del DW en MySQL con las credenciales correspondientes y explorar los dashboards configurados.
 
 ---
 
-## ❓ Preguntas de negocio respondidas
+##  Preguntas de negocio respondidas
 
 1. ¿Cuáles categorías, marcas y canales digitales generan mayor volumen de pedidos, ingresos y margen?
 2. ¿Qué productos presentan la mayor tasa de devolución y qué impacto tienen en la rentabilidad?
@@ -178,7 +167,7 @@ Luego conectar Metabase a la base de datos del DW en MySQL con las credenciales 
 
 ---
 
-## 📊 KPIs implementados
+##  KPIs implementados
 
 | KPI | Fórmula |
 |-----|---------|
@@ -194,8 +183,8 @@ Luego conectar Metabase a la base de datos del DW en MySQL con las credenciales 
 
 ---
 
-## 📝 Notas
+##  Notas
 
 - Los datos utilizados en este proyecto son **sintéticos** y fueron generados con fines académicos.
 - El historial de commits refleja la participación de todos los integrantes del grupo.
-- Para cualquier consulta sobre acceso al repositorio privado, contactar al equipo directamente.
+- Para cualquier consulta sobre acceso al repositorio, contactar al equipo directamente.
