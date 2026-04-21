@@ -1,0 +1,689 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Version="29" AppVersion="5.9.8.18" ReadKey="readkey.9/W7CceusoM=.9TR4M/vctcHia6sd+Xz2Jw==.W5WhCXGGP2sYSAQ0W7/9sGtNtjpl+Qf4s189cudWgC2OUJg7FOHAJ9zzrXez+WOY5USROAfbMJBMeIl/UwRZAP/gB9u7ZAbiHipa9OXMjzc=.7kmfiWOtv9GrGftvt6J65TOAKcaP1LLrHl0Vjeoo2Is=." WriteKeyPublic="BgIAAACkAABSU0ExAAgAAAEAAQBV2kGKT5L7XmcdYp6C2UO3nD2n20Mucx3HpRW1nZkHOV693CIskZ4yk6mX8ZN2HBkB2NxmLP3bEi/PCVIzY3fthZwn+TKVqHCVWpM9BrN5KcG4GXYyOP5NaYRf2z0MhtIiPVFt1LYmguSOK8oHxTJJYJTmDlQh4zW8JtEXWKIbevDmLQbKBiFMV+KHWScNhBEbSEnrv5pcfkneQR8c1N8ea8/lxFsx7i1JtxVPM/7I+jO0raUd65bGGxHUgV6TqSSq2ZlaZkTMCrLoz3+bdvkRh81cftV6Hgc3M/LV86pklQi9ZuYDJJL9parBjZqhm7lotDLx9hY1lEUSHoBsnrD7" StartModuleName="Main" DocumentationTableOrder="ByExecutionOrder" EditedBy="JOSUEMARTINEZ\josue" LastEdited="2026-04-21T05:19:36.8006901Z" ComplexityLevel="Beginner" Signature="62I8k250Z8rncVKTD36YKCheX6S+Y5uisQwdgNOAjVI=">
+  <Modules>
+    <Module Name="Main" AutoRun="true" SelectedGroupName="FACT_VENTAS">
+      <Groups>
+        <Group Name="Clientes">
+          <Tables>
+            <Table Name="cliente.csv" Left="90" Top="9" Width="619" Height="646" IsMinimized="false" ActiveActionIndex="12" ViewMode="Table">
+              <Actions>
+                <ImportDelimitedTextAction AutoStatus="true" DecimalSeparator="Point" ThousandSeparator="Space" ShowParsingErrors="false" IgnoreQuoting="false" NumericValuesTreatmentOption="AlwaysAsNumbers" ColumnsDontHaveHeaders="false" LoadAllColumns="true" AddColumnsWhenRowsHaveMoreValuesThanHeaders="false">
+                  <MetaColumns>
+                    <MetaColumn OriginalName="fecha_Registro" Format="DateYYYYMMDD_DashSeparated" FormatOrigin="User" />
+                  </MetaColumns>
+                  <InputFileDefinition Mode="Single">
+                    <FileName Value="C:\Users\josue\Downloads\DATOS PROYECTO 1\cliente.csv" Type="Path" />
+                  </InputFileDefinition>
+                  <SkipLines Value="0" Type="Number" />
+                  <MaxLines Value="0" Type="Number" />
+                  <Separator SeparatorType="Comma" />
+                  <Encoding EncodingType="UTF8" />
+                </ImportDelimitedTextAction>
+                <ExpressionFilterAction Condition="not (if(not iserror([id_Cliente]), isempty([id_Cliente]), false()))" />
+                <ReplaceColumnsAction>
+                  <Columns>
+                    <NameExpressionPair Name="id_Cliente">
+                      <Expression Value="if istext([id_Cliente]) then trim([id_Cliente]) else [id_Cliente]" Type="Expression" />
+                    </NameExpressionPair>
+                  </Columns>
+                </ReplaceColumnsAction>
+                <ReplaceColumnsAction>
+                  <Columns>
+                    <NameExpressionPair Name="nombre">
+                      <Expression Value="if istext([nombre]) then trim([nombre]) else [nombre]" Type="Expression" />
+                    </NameExpressionPair>
+                  </Columns>
+                </ReplaceColumnsAction>
+                <RenameColumnsAction>
+                  <Names>
+                    <NamePair Name1="id_Cliente" Name2="id_cliente" />
+                    <NamePair Name1="fecha_Registro" Name2="fecha_registro" />
+                  </Names>
+                </RenameColumnsAction>
+                <ReplaceColumnsAction>
+                  <Columns>
+                    <NameExpressionPair Name="nombre">
+                      <Expression Value="if istext([nombre]) then proper([nombre]) else [nombre]" Type="Expression" />
+                    </NameExpressionPair>
+                  </Columns>
+                </ReplaceColumnsAction>
+                <ExpressionFilterAction Condition="not (if(not iserror([nombre]), isempty([nombre]), false()))" />
+                <ExpressionFilterAction Condition="not (if(not iserror([email]), isempty([email]), false()))" />
+                <ExpressionFilterAction Condition="not (if(not iserror([telefono]), isempty([telefono]), false()))" />
+                <ExpressionFilterAction Condition="not (if(not iserror([ciudad]), isempty([ciudad]), false()))" />
+                <ExpressionFilterAction Condition="not (if(not iserror([pais]), isempty([pais]), false()))" />
+                <ConvertDataTypesAction Conversion="TextToDate" FailureOption="KeepOriginal">
+                  <ColumnNames>
+                    <Item>fecha_registro</Item>
+                  </ColumnNames>
+                  <Format Value="yyyy-MM-dd" Type="Text" />
+                </ConvertDataTypesAction>
+                <ExportDbAction AutoStatus="true" UseCustomSql="true" CustomSql="SET FOREIGN_KEY_CHECKS = 0;&#xA;TRUNCATE TABLE dim_cliente;&#xA;SET FOREIGN_KEY_CHECKS = 1;" BatchSize="100" ColumnTypeMismatchOption="FailBatch" BatchFailureOption="Halt" ColumnMappingMode="Automatic">
+                  <DataConnectorDefinition IsShared="true" Type="List" Name="ConnectETL_TO_MYSQL" />
+                  <TableName Value="ecommerce_final.dim_cliente" Type="List" />
+                </ExportDbAction>
+              </Actions>
+              <AnalysisView Version="2" AppVersion="5.9.8.18" LayoutMode="Filters" />
+            </Table>
+          </Tables>
+        </Group>
+        <Group Name="Productos">
+          <Tables>
+            <Table Name="categoria.csv" Left="46" Top="321" Width="500" Height="300" IsMinimized="false" ActiveActionIndex="0" ViewMode="Table">
+              <Actions>
+                <ImportDelimitedTextAction AutoStatus="true" DecimalSeparator="Point" ThousandSeparator="Space" ShowParsingErrors="false" IgnoreQuoting="false" NumericValuesTreatmentOption="AlwaysAsNumbers" ColumnsDontHaveHeaders="false" LoadAllColumns="true" AddColumnsWhenRowsHaveMoreValuesThanHeaders="false">
+                  <InputFileDefinition Mode="Single">
+                    <FileName Value="C:\Users\josue\Downloads\DATOS PROYECTO 1\categoria.csv" Type="Path" />
+                  </InputFileDefinition>
+                  <SkipLines Value="0" Type="Number" />
+                  <MaxLines Value="0" Type="Number" />
+                  <Separator SeparatorType="Comma" />
+                  <Encoding EncodingType="UTF8" />
+                </ImportDelimitedTextAction>
+              </Actions>
+              <AnalysisView Version="2" AppVersion="5.9.8.18" LayoutMode="Filters" />
+            </Table>
+            <Table Name="marca.csv" Left="568" Top="320" Width="500" Height="300" IsMinimized="false" ActiveActionIndex="0" ViewMode="Table">
+              <Actions>
+                <ImportDelimitedTextAction AutoStatus="true" DecimalSeparator="Point" ThousandSeparator="Space" ShowParsingErrors="false" IgnoreQuoting="false" NumericValuesTreatmentOption="AlwaysAsNumbers" ColumnsDontHaveHeaders="false" LoadAllColumns="true" AddColumnsWhenRowsHaveMoreValuesThanHeaders="false">
+                  <InputFileDefinition Mode="Single">
+                    <FileName Value="C:\Users\josue\Downloads\DATOS PROYECTO 1\marca.csv" Type="Path" />
+                  </InputFileDefinition>
+                  <SkipLines Value="0" Type="Number" />
+                  <MaxLines Value="0" Type="Number" />
+                  <Separator SeparatorType="Comma" />
+                  <Encoding EncodingType="UTF8" />
+                </ImportDelimitedTextAction>
+              </Actions>
+              <AnalysisView Version="2" AppVersion="5.9.8.18" LayoutMode="Filters" />
+            </Table>
+            <Table Name="producto.csv" Left="44" Top="7" Width="1018" Height="300" IsMinimized="false" ActiveActionIndex="15" ViewMode="Table">
+              <Actions>
+                <ImportDelimitedTextAction AutoStatus="true" DecimalSeparator="Point" ThousandSeparator="Space" ShowParsingErrors="false" IgnoreQuoting="false" NumericValuesTreatmentOption="AlwaysAsNumbers" ColumnsDontHaveHeaders="false" LoadAllColumns="true" AddColumnsWhenRowsHaveMoreValuesThanHeaders="false">
+                  <InputFileDefinition Mode="Single">
+                    <FileName Value="C:\Users\josue\Downloads\DATOS PROYECTO 1\producto.csv" Type="Path" />
+                  </InputFileDefinition>
+                  <SkipLines Value="0" Type="Number" />
+                  <MaxLines Value="0" Type="Number" />
+                  <Separator SeparatorType="Comma" />
+                  <Encoding EncodingType="UTF8" />
+                </ImportDelimitedTextAction>
+                <LookupAction LookupTableName="categoria.csv" SecondTableExists="true" ColumnName="id_Categoria" LookupColumnName="id_Categoria" ReturnColumnName="nombre_Categoria" CreateNewColumn="true" ValueNotFoundOption="KeepOriginal" />
+                <LookupAction LookupTableName="categoria.csv" SecondTableExists="true" ColumnName="id_Categoria" LookupColumnName="id_Categoria" ReturnColumnName="descripcion_Categoria" CreateNewColumn="true" ValueNotFoundOption="KeepOriginal" />
+                <LookupAction LookupTableName="marca.csv" SecondTableExists="true" ColumnName="id_Marca" LookupColumnName="id_Marca" ReturnColumnName="nombre_Marca" CreateNewColumn="true" ValueNotFoundOption="KeepOriginal" />
+                <LookupAction LookupTableName="marca.csv" SecondTableExists="true" ColumnName="id_Marca" LookupColumnName="id_Marca" ReturnColumnName="pais_Origen" CreateNewColumn="true" ValueNotFoundOption="KeepOriginal" />
+                <KeepRemoveColumnsAction Mode="Keep">
+                  <ColumnNames>
+                    <Item>id_Producto</Item>
+                    <Item>nombre_Producto</Item>
+                    <Item>descripcion</Item>
+                    <Item>nombre_Categoria</Item>
+                    <Item>descripcion_Categoria</Item>
+                    <Item>nombre_Marca</Item>
+                    <Item>pais_Origen</Item>
+                  </ColumnNames>
+                </KeepRemoveColumnsAction>
+                <ReplaceColumnsAction>
+                  <Columns>
+                    <NameExpressionPair Name="id_Producto">
+                      <Expression Value="if istext([id_Producto]) then trim([id_Producto]) else [id_Producto]" Type="Expression" />
+                    </NameExpressionPair>
+                  </Columns>
+                </ReplaceColumnsAction>
+                <ReplaceColumnsAction>
+                  <Columns>
+                    <NameExpressionPair Name="nombre_Producto">
+                      <Expression Value="if istext([nombre_Producto]) then trim([nombre_Producto]) else [nombre_Producto]" Type="Expression" />
+                    </NameExpressionPair>
+                  </Columns>
+                </ReplaceColumnsAction>
+                <ReplaceColumnsAction>
+                  <Columns>
+                    <NameExpressionPair Name="descripcion">
+                      <Expression Value="if istext([descripcion]) then trim([descripcion]) else [descripcion]" Type="Expression" />
+                    </NameExpressionPair>
+                  </Columns>
+                </ReplaceColumnsAction>
+                <ReplaceColumnsAction>
+                  <Columns>
+                    <NameExpressionPair Name="nombre_Categoria">
+                      <Expression Value="if istext([nombre_Categoria]) then trim([nombre_Categoria]) else [nombre_Categoria]" Type="Expression" />
+                    </NameExpressionPair>
+                  </Columns>
+                </ReplaceColumnsAction>
+                <ReplaceColumnsAction>
+                  <Columns>
+                    <NameExpressionPair Name="descripcion_Categoria">
+                      <Expression Value="if istext([descripcion_Categoria]) then trim([descripcion_Categoria]) else [descripcion_Categoria]" Type="Expression" />
+                    </NameExpressionPair>
+                  </Columns>
+                </ReplaceColumnsAction>
+                <ReplaceColumnsAction>
+                  <Columns>
+                    <NameExpressionPair Name="nombre_Marca">
+                      <Expression Value="if istext([nombre_Marca]) then trim([nombre_Marca]) else [nombre_Marca]" Type="Expression" />
+                    </NameExpressionPair>
+                  </Columns>
+                </ReplaceColumnsAction>
+                <ReplaceColumnsAction>
+                  <Columns>
+                    <NameExpressionPair Name="pais_Origen">
+                      <Expression Value="if istext([pais_Origen]) then trim([pais_Origen]) else [pais_Origen]" Type="Expression" />
+                    </NameExpressionPair>
+                  </Columns>
+                </ReplaceColumnsAction>
+                <RenameColumnsAction>
+                  <Names>
+                    <NamePair Name1="id_Producto" Name2="id_producto" />
+                    <NamePair Name1="nombre_Producto" Name2="nombre_producto" />
+                    <NamePair Name1="nombre_Categoria" Name2="nombre_catagoria" />
+                  </Names>
+                </RenameColumnsAction>
+                <RenameColumnsAction>
+                  <Names>
+                    <NamePair Name1="nombre_catagoria" Name2="nombre_categoria" />
+                    <NamePair Name1="descripcion_Categoria" Name2="descripcion_categoria" />
+                    <NamePair Name1="nombre_Marca" Name2="nombre_marca" />
+                    <NamePair Name1="pais_Origen" Name2="pais_origen" />
+                  </Names>
+                </RenameColumnsAction>
+                <ExportDbAction AutoStatus="true" UseCustomSql="true" CustomSql="SET FOREIGN_KEY_CHECKS = 0;&#xA;TRUNCATE TABLE dim_producto;&#xA;SET FOREIGN_KEY_CHECKS = 1;" BatchSize="100" ColumnTypeMismatchOption="FailBatch" BatchFailureOption="Halt" ColumnMappingMode="Automatic">
+                  <DataConnectorDefinition IsShared="true" Type="List" Name="ConnectETL_TO_MYSQL" />
+                  <TableName Value="ecommerce_final.dim_producto" Type="List" />
+                </ExportDbAction>
+              </Actions>
+              <AnalysisView Version="2" AppVersion="5.9.8.18" LayoutMode="Filters" />
+            </Table>
+          </Tables>
+        </Group>
+        <Group Name="Tiempo">
+          <Tables>
+            <Table Name="Table 1" Left="291" Top="0" Width="655" Height="575" IsMinimized="false" ActiveActionIndex="16" ViewMode="Table">
+              <Actions>
+                <CalendarAction DateFormat="DMYY">
+                  <MetaColumns>
+                    <MetaColumn OriginalName="Date_x0020_as_x0020_number" Format="DateDDMMMYYYY" FormatOrigin="Autodetected" />
+                  </MetaColumns>
+                  <FromDate Type="Date">
+                    <Date Value="2024-01-01" Type="Date" />
+                  </FromDate>
+                  <ToDate Type="Date">
+                    <Date Value="2026-12-31" Type="Date" />
+                  </ToDate>
+                  <Columns>
+                    <Item>DateAsNumber</Item>
+                    <Item>FormattedDate</Item>
+                    <Item>Year</Item>
+                    <Item>MonthNumber</Item>
+                    <Item>MonthName</Item>
+                    <Item>Day</Item>
+                    <Item>DayOfWeekName</Item>
+                  </Columns>
+                </CalendarAction>
+                <AddColumnsAction ColumnExistsOption="Rename">
+                  <Columns>
+                    <NameExpressionPair Name="id_fecha">
+                      <Expression Value="year([Date as number])*10000 + [Month number]*100 + [Day]" Type="Expression" />
+                    </NameExpressionPair>
+                  </Columns>
+                  <InsertPosition Position="Rightmost" />
+                </AddColumnsAction>
+                <ReorderColumnsAction>
+                  <PositionRules>
+                    <ColumnPositionRule Position="Leftmost" ColumnName="id_fecha" />
+                  </PositionRules>
+                </ReorderColumnsAction>
+                <MakeDateTimeColumnsAction ColumnName="Formatted date" FormattedDate="false" Format="" Year="false" Quarter="true" YearQuarter="false" Month="false" MonthDisplayType="English" YearMonth="false" YearMonthDisplayType="English" Day="false" Weekday="false" WeekdayDisplayType="English" DayOfYear="false" IsoWeekNumber="false" MonthStart="false" MonthEnd="false" WeekStart="false" WeekEnd="false" WeekStartDay="Sunday" Hour12="false" Hour24="false" AmPm="false" Minutes="false" Seconds="false" Milliseconds="false" />
+                <KeepRemoveColumnsAction Mode="Remove" FailIfColumnsNotFound="true">
+                  <ColumnNames>
+                    <Item>Quarter</Item>
+                  </ColumnNames>
+                </KeepRemoveColumnsAction>
+                <MakeDateTimeColumnsAction ColumnName="Date as number" FormattedDate="false" Format="" Year="false" Quarter="true" YearQuarter="true" Month="false" MonthDisplayType="English" YearMonth="false" YearMonthDisplayType="English" Day="false" Weekday="false" WeekdayDisplayType="English" DayOfYear="false" IsoWeekNumber="false" MonthStart="false" MonthEnd="false" WeekStart="false" WeekEnd="false" WeekStartDay="Sunday" Hour12="false" Hour24="false" AmPm="false" Minutes="false" Seconds="false" Milliseconds="false" />
+                <KeepRemoveColumnsAction Mode="Remove" FailIfColumnsNotFound="true">
+                  <ColumnNames>
+                    <Item>Year-quarter</Item>
+                  </ColumnNames>
+                </KeepRemoveColumnsAction>
+                <MakeDateTimeColumnsAction ColumnName="Date as number" FormattedDate="false" Format="" Year="false" Quarter="true" YearQuarter="false" Month="false" MonthDisplayType="English" YearMonth="false" YearMonthDisplayType="English" Day="false" Weekday="false" WeekdayDisplayType="English" DayOfYear="false" IsoWeekNumber="false" MonthStart="false" MonthEnd="false" WeekStart="false" WeekEnd="false" WeekStartDay="Sunday" Hour12="false" Hour24="false" AmPm="false" Minutes="false" Seconds="false" Milliseconds="false" />
+                <KeepRemoveColumnsAction Mode="Remove" FailIfColumnsNotFound="false">
+                  <ColumnNames>
+                    <Item>Date as number</Item>
+                  </ColumnNames>
+                </KeepRemoveColumnsAction>
+                <MakeDateTimeColumnsAction ColumnName="id_fecha" FormattedDate="false" Format="" Year="true" Quarter="false" YearQuarter="false" Month="false" MonthDisplayType="English" YearMonth="false" YearMonthDisplayType="English" Day="false" Weekday="false" WeekdayDisplayType="English" DayOfYear="false" IsoWeekNumber="false" MonthStart="false" MonthEnd="false" WeekStart="false" WeekEnd="false" WeekStartDay="Sunday" Hour12="false" Hour24="false" AmPm="false" Minutes="false" Seconds="false" Milliseconds="false" />
+                <KeepRemoveColumnsAction Mode="Remove" FailIfColumnsNotFound="true">
+                  <ColumnNames>
+                    <Item>Quarter(2)</Item>
+                    <Item>Year(2)</Item>
+                  </ColumnNames>
+                </KeepRemoveColumnsAction>
+                <ReorderColumnsAction>
+                  <PositionRules>
+                    <ColumnPositionRule Position="AfterColumn" AfterColumnName="id_fecha" ColumnName="Year" />
+                  </PositionRules>
+                </ReorderColumnsAction>
+                <RenameColumnsAction>
+                  <Names>
+                    <NamePair Name1="Year" Name2="anio" />
+                  </Names>
+                </RenameColumnsAction>
+                <ReorderColumnsAction>
+                  <PositionRules>
+                    <ColumnPositionRule Position="AfterColumn" AfterColumnName="Day of week (name)" ColumnName="Formatted date" />
+                  </PositionRules>
+                </ReorderColumnsAction>
+                <RenameColumnsAction>
+                  <Names>
+                    <NamePair Name1="Month number" Name2="nombre_mes" />
+                  </Names>
+                </RenameColumnsAction>
+                <RenameColumnsAction>
+                  <Names>
+                    <NamePair Name1="nombre_mes" Name2="mes" />
+                    <NamePair Name1="Month name" Name2="nombre_mes" />
+                    <NamePair Name1="Day" Name2="dia" />
+                    <NamePair Name1="Day of week (name)" Name2="nombre_dia" />
+                    <NamePair Name1="Formatted date" Name2="fecha" />
+                    <NamePair Name1="Quarter" Name2="trimestre" />
+                  </Names>
+                </RenameColumnsAction>
+                <ExportDbAction AutoStatus="true" UseCustomSql="true" CustomSql="SET FOREIGN_KEY_CHECKS = 0;&#xA;TRUNCATE TABLE dim_tiempo;&#xA;SET FOREIGN_KEY_CHECKS = 1;" BatchSize="100" ColumnTypeMismatchOption="FailBatch" BatchFailureOption="Halt" ColumnMappingMode="Automatic">
+                  <DataConnectorDefinition IsShared="true" Type="List" Name="ConnectETL_TO_MYSQL" />
+                  <TableName Value="ecommerce_final.dim_tiempo" Type="List" />
+                </ExportDbAction>
+              </Actions>
+              <AnalysisView Version="2" AppVersion="5.9.8.18" LayoutMode="Filters" />
+            </Table>
+          </Tables>
+        </Group>
+        <Group Name="Envio">
+          <Tables>
+            <Table Name="envio.csv" Left="75" Top="23" Width="816" Height="300" IsMinimized="false" ActiveActionIndex="9" ViewMode="Table">
+              <Actions>
+                <ImportDelimitedTextAction AutoStatus="true" DecimalSeparator="Point" ThousandSeparator="Space" ShowParsingErrors="false" IgnoreQuoting="false" NumericValuesTreatmentOption="AlwaysAsNumbers" ColumnsDontHaveHeaders="false" LoadAllColumns="true" AddColumnsWhenRowsHaveMoreValuesThanHeaders="false">
+                  <InputFileDefinition Mode="Single">
+                    <FileName Value="C:\Users\josue\Downloads\DATOS PROYECTO 1\envio.csv" Type="Path" />
+                  </InputFileDefinition>
+                  <SkipLines Value="0" Type="Number" />
+                  <MaxLines Value="0" Type="Number" />
+                  <Separator SeparatorType="Comma" />
+                  <Encoding EncodingType="UTF8" />
+                </ImportDelimitedTextAction>
+                <KeepRemoveColumnsAction Mode="Remove" FailIfColumnsNotFound="false">
+                  <ColumnNames>
+                    <Item>id_pedido</Item>
+                    <Item>fecha_envio</Item>
+                    <Item>fecha_entrega</Item>
+                  </ColumnNames>
+                </KeepRemoveColumnsAction>
+                <LookupAction LookupTableName="operador_logistico.csv" SecondTableExists="true" ColumnName="id_operador" LookupColumnName="id_Operador" ReturnColumnName="nombre_Operador" CreateNewColumn="true" ValueNotFoundOption="KeepOriginal" />
+                <LookupAction LookupTableName="operador_logistico.csv" SecondTableExists="true" ColumnName="id_operador" LookupColumnName="id_Operador" ReturnColumnName="tipo_Servicio" CreateNewColumn="true" ValueNotFoundOption="KeepOriginal" />
+                <ReorderColumnsAction>
+                  <PositionRules>
+                    <ColumnPositionRule Position="AfterColumn" AfterColumnName="id_envio" ColumnName="fecha_Entrega_Estimada" />
+                  </PositionRules>
+                </ReorderColumnsAction>
+                <KeepRemoveColumnsAction Mode="Remove" FailIfColumnsNotFound="true">
+                  <ColumnNames>
+                    <Item>id_operador</Item>
+                  </ColumnNames>
+                </KeepRemoveColumnsAction>
+                <ReplaceColumnsAction>
+                  <Columns>
+                    <NameExpressionPair Name="id_envio">
+                      <Expression Value="if istext([id_envio]) then trim([id_envio]) else [id_envio]" Type="Expression" />
+                    </NameExpressionPair>
+                  </Columns>
+                </ReplaceColumnsAction>
+                <RenameColumnsAction>
+                  <Names>
+                    <NamePair Name1="fecha_Entrega_Estimada" Name2="fecha_entrega_estimada" />
+                    <NamePair Name1="nombre_Operador" Name2="nombre_operador" />
+                    <NamePair Name1="tipo_Servicio" Name2="tipo_servicio" />
+                  </Names>
+                </RenameColumnsAction>
+                <ConvertDataTypesAction Conversion="TextToDate" FailureOption="KeepOriginal">
+                  <ColumnNames>
+                    <Item>fecha_entrega_estimada</Item>
+                  </ColumnNames>
+                  <Format Value="yyyy-MM-dd" Type="Text" />
+                </ConvertDataTypesAction>
+                <ExportDbAction AutoStatus="true" UseCustomSql="true" CustomSql="SET FOREIGN_KEY_CHECKS = 0;&#xA;TRUNCATE TABLE dim_envio;&#xA;SET FOREIGN_KEY_CHECKS = 1;" BatchSize="100" ColumnTypeMismatchOption="FailBatch" BatchFailureOption="Halt" ColumnMappingMode="Automatic">
+                  <DataConnectorDefinition IsShared="true" Type="List" Name="ConnectETL_TO_MYSQL" />
+                  <TableName Value="ecommerce_final.dim_envio" Type="List" />
+                </ExportDbAction>
+              </Actions>
+              <AnalysisView Version="2" AppVersion="5.9.8.18" LayoutMode="Filters" />
+            </Table>
+            <Table Name="operador_logistico.csv" Left="72" Top="344" Width="500" Height="299" IsMinimized="false" ActiveActionIndex="0" ViewMode="Table">
+              <Actions>
+                <ImportDelimitedTextAction AutoStatus="true" DecimalSeparator="Point" ThousandSeparator="Space" ShowParsingErrors="false" IgnoreQuoting="false" NumericValuesTreatmentOption="AlwaysAsNumbers" ColumnsDontHaveHeaders="false" LoadAllColumns="true" AddColumnsWhenRowsHaveMoreValuesThanHeaders="false">
+                  <InputFileDefinition Mode="Single">
+                    <FileName Value="C:\Users\josue\Downloads\DATOS PROYECTO 1\operador_logistico.csv" Type="Path" />
+                  </InputFileDefinition>
+                  <SkipLines Value="0" Type="Number" />
+                  <MaxLines Value="0" Type="Number" />
+                  <Separator SeparatorType="Comma" />
+                  <Encoding EncodingType="UTF8" />
+                </ImportDelimitedTextAction>
+              </Actions>
+              <AnalysisView Version="2" AppVersion="5.9.8.18" LayoutMode="Filters" />
+            </Table>
+          </Tables>
+        </Group>
+        <Group Name="Campania">
+          <Tables>
+            <Table Name="campania.csv" Left="62" Top="82" Width="636" Height="424" IsMinimized="false" ActiveActionIndex="4" ViewMode="Table">
+              <Actions>
+                <ImportDelimitedTextAction AutoStatus="true" DecimalSeparator="Point" ThousandSeparator="Space" ShowParsingErrors="false" IgnoreQuoting="false" NumericValuesTreatmentOption="AlwaysAsNumbers" ColumnsDontHaveHeaders="false" LoadAllColumns="true" AddColumnsWhenRowsHaveMoreValuesThanHeaders="false">
+                  <InputFileDefinition Mode="Single">
+                    <FileName Value="C:\Users\josue\Downloads\DATOS PROYECTO 1\campania.csv" Type="Path" />
+                  </InputFileDefinition>
+                  <SkipLines Value="0" Type="Number" />
+                  <MaxLines Value="0" Type="Number" />
+                  <Separator SeparatorType="Comma" />
+                  <Encoding EncodingType="UTF8" />
+                </ImportDelimitedTextAction>
+                <RenameColumnsAction>
+                  <Names>
+                    <NamePair Name1="id_Campania" Name2="id_campania" />
+                    <NamePair Name1="nombre_Campania" Name2="nombre_campania" />
+                    <NamePair Name1="tipo_Campania" Name2="tipo_campania" />
+                    <NamePair Name1="fecha_Inicio" Name2="fecha_inicio" />
+                    <NamePair Name1="fecha_Fin" Name2="fecha_fin" />
+                  </Names>
+                </RenameColumnsAction>
+                <ReplaceColumnsAction>
+                  <Columns>
+                    <NameExpressionPair Name="id_campania">
+                      <Expression Value="if istext([id_campania]) then trim([id_campania]) else [id_campania]" Type="Expression" />
+                    </NameExpressionPair>
+                  </Columns>
+                </ReplaceColumnsAction>
+                <ConvertDataTypesAction Conversion="TextToDate" FailureOption="KeepOriginal">
+                  <ColumnNames>
+                    <Item>fecha_inicio</Item>
+                    <Item>fecha_fin</Item>
+                  </ColumnNames>
+                  <Format Value="yyyy-MM-dd" Type="Text" />
+                </ConvertDataTypesAction>
+                <ExportDbAction AutoStatus="true" UseCustomSql="true" CustomSql="SET FOREIGN_KEY_CHECKS = 0;&#xA;TRUNCATE TABLE dim_campania;&#xA;SET FOREIGN_KEY_CHECKS = 1;" BatchSize="100" ColumnTypeMismatchOption="FailBatch" BatchFailureOption="Halt" ColumnMappingMode="Automatic">
+                  <DataConnectorDefinition IsShared="true" Type="List" Name="ConnectETL_TO_MYSQL" />
+                  <TableName Value="ecommerce_final.dim_campania" Type="List" />
+                </ExportDbAction>
+              </Actions>
+              <AnalysisView Version="2" AppVersion="5.9.8.18" LayoutMode="Filters" />
+            </Table>
+          </Tables>
+        </Group>
+        <Group Name="Dispostivo">
+          <Tables>
+            <Table Name="pedido.csv" Left="42" Top="15" Width="688" Height="414" IsMinimized="false" ActiveActionIndex="5" ViewMode="Table">
+              <Actions>
+                <ImportDelimitedTextAction AutoStatus="true" DecimalSeparator="Point" ThousandSeparator="Space" ShowParsingErrors="false" IgnoreQuoting="false" NumericValuesTreatmentOption="AlwaysAsNumbers" ColumnsDontHaveHeaders="false" LoadAllColumns="true" AddColumnsWhenRowsHaveMoreValuesThanHeaders="false">
+                  <InputFileDefinition Mode="Single">
+                    <FileName Value="C:\Users\josue\Downloads\DATOS PROYECTO 1\pedido.csv" Type="Path" />
+                  </InputFileDefinition>
+                  <SkipLines Value="0" Type="Number" />
+                  <MaxLines Value="0" Type="Number" />
+                  <Separator SeparatorType="Comma" />
+                  <Encoding EncodingType="UTF8" />
+                </ImportDelimitedTextAction>
+                <KeepRemoveColumnsAction Mode="Keep">
+                  <ColumnNames>
+                    <Item>dispositivo</Item>
+                  </ColumnNames>
+                </KeepRemoveColumnsAction>
+                <DeduplicateAction CompareAllColumns="true" />
+                <EnumerateRowsAction EnumerateInGroups="false" Repeat="false" />
+                <RenameColumnsAction>
+                  <Names>
+                    <NamePair Name1="RowNo" Name2="id_dispositivo" />
+                    <NamePair Name1="dispositivo" Name2="nombre_dispositivo" />
+                  </Names>
+                </RenameColumnsAction>
+                <ExportDbAction AutoStatus="true" UseCustomSql="true" CustomSql="SET FOREIGN_KEY_CHECKS = 0;&#xA;TRUNCATE TABLE dim_dispositivo;&#xA;SET FOREIGN_KEY_CHECKS = 1;" BatchSize="100" ColumnTypeMismatchOption="FailBatch" BatchFailureOption="Halt" ColumnMappingMode="Automatic">
+                  <DataConnectorDefinition IsShared="true" Type="List" Name="ConnectETL_TO_MYSQL" />
+                  <TableName Value="ecommerce_final.dim_dispositivo" Type="List" />
+                </ExportDbAction>
+              </Actions>
+              <AnalysisView Version="2" AppVersion="5.9.8.18" LayoutMode="Filters" />
+            </Table>
+          </Tables>
+        </Group>
+        <Group Name="Metodo Pago">
+          <Tables>
+            <Table Name="pedido.csv 2" Left="143" Top="44" Width="664" Height="426" IsMinimized="false" ActiveActionIndex="5" ViewMode="Table">
+              <Actions>
+                <ImportDelimitedTextAction AutoStatus="true" DecimalSeparator="Point" ThousandSeparator="Space" ShowParsingErrors="false" IgnoreQuoting="false" NumericValuesTreatmentOption="AlwaysAsNumbers" ColumnsDontHaveHeaders="false" LoadAllColumns="true" AddColumnsWhenRowsHaveMoreValuesThanHeaders="false">
+                  <InputFileDefinition Mode="Single">
+                    <FileName Value="C:\Users\josue\Downloads\DATOS PROYECTO 1\pedido.csv" Type="Path" />
+                  </InputFileDefinition>
+                  <SkipLines Value="0" Type="Number" />
+                  <MaxLines Value="0" Type="Number" />
+                  <Separator SeparatorType="Comma" />
+                  <Encoding EncodingType="UTF8" />
+                </ImportDelimitedTextAction>
+                <KeepRemoveColumnsAction Mode="Keep">
+                  <ColumnNames>
+                    <Item>metodo_Pago</Item>
+                  </ColumnNames>
+                </KeepRemoveColumnsAction>
+                <DeduplicateAction CompareAllColumns="true" />
+                <EnumerateRowsAction EnumerateInGroups="false" Repeat="false" />
+                <RenameColumnsAction>
+                  <Names>
+                    <NamePair Name1="RowNo" Name2="id_metodo_pago" />
+                    <NamePair Name1="metodo_Pago" Name2="nombre_metodo_pago" />
+                  </Names>
+                </RenameColumnsAction>
+                <ExportDbAction AutoStatus="true" UseCustomSql="true" CustomSql="SET FOREIGN_KEY_CHECKS = 0;&#xA;TRUNCATE TABLE dim_metodo_pago;&#xA;SET FOREIGN_KEY_CHECKS = 1;" BatchSize="100" ColumnTypeMismatchOption="FailBatch" BatchFailureOption="Halt" ColumnMappingMode="Automatic">
+                  <DataConnectorDefinition IsShared="true" Type="List" Name="ConnectETL_TO_MYSQL" />
+                  <TableName Value="ecommerce_final.dim_metodo_pago" Type="List" />
+                </ExportDbAction>
+              </Actions>
+              <AnalysisView Version="2" AppVersion="5.9.8.18" LayoutMode="Filters" />
+            </Table>
+          </Tables>
+        </Group>
+        <Group Name="FACT_VENTAS">
+          <Tables>
+            <Table Name="detalle_pedido.csv" Left="46" Top="26" Width="825" Height="469" IsMinimized="false" ActiveActionIndex="23" ViewMode="Table">
+              <Actions>
+                <ImportDelimitedTextAction AutoStatus="true" DecimalSeparator="Point" ThousandSeparator="Space" ShowParsingErrors="false" IgnoreQuoting="false" NumericValuesTreatmentOption="AlwaysAsNumbers" ColumnsDontHaveHeaders="false" LoadAllColumns="true" AddColumnsWhenRowsHaveMoreValuesThanHeaders="false">
+                  <InputFileDefinition Mode="Single">
+                    <FileName Value="C:\Users\josue\Downloads\DATOS PROYECTO 1\detalle_pedido.csv" Type="Path" />
+                  </InputFileDefinition>
+                  <SkipLines Value="0" Type="Number" />
+                  <MaxLines Value="0" Type="Number" />
+                  <Separator SeparatorType="Comma" />
+                  <Encoding EncodingType="UTF8" />
+                </ImportDelimitedTextAction>
+                <LookupAction LookupTableName="pedido.csv 3" SecondTableExists="true" ColumnName="id_Pedido" LookupColumnName="id_Pedido" ReturnColumnName="id_Cliente" CreateNewColumn="true" ValueNotFoundOption="KeepOriginal" />
+                <LookupAction LookupTableName="pedido.csv 3" SecondTableExists="true" ColumnName="id_Pedido" LookupColumnName="id_Pedido" ReturnColumnName="id_Campania" CreateNewColumn="true" ValueNotFoundOption="KeepOriginal" />
+                <LookupAction LookupTableName="pedido.csv 3" SecondTableExists="true" ColumnName="id_Pedido" LookupColumnName="id_Pedido" ReturnColumnName="metodo_Pago" CreateNewColumn="true" ValueNotFoundOption="KeepOriginal" />
+                <LookupAction LookupTableName="pedido.csv 3" SecondTableExists="true" ColumnName="id_Pedido" LookupColumnName="id_Pedido" ReturnColumnName="dispositivo" CreateNewColumn="true" ValueNotFoundOption="KeepOriginal" />
+                <LookupAction LookupTableName="pedido.csv 3" SecondTableExists="true" ColumnName="id_Pedido" LookupColumnName="id_Pedido" ReturnColumnName="fecha_Pedido" CreateNewColumn="true" ValueNotFoundOption="KeepOriginal" />
+                <LookupAction LookupTableName="envio.csv 2" SecondTableExists="true" ColumnName="id_Pedido" LookupColumnName="id_pedido" ReturnColumnName="id_envio" CreateNewColumn="true" ValueNotFoundOption="KeepOriginal" />
+                <LookupAction LookupTableName="envio.csv 2" SecondTableExists="true" ColumnName="id_Pedido" LookupColumnName="id_pedido" ReturnColumnName="fecha_envio" CreateNewColumn="true" ValueNotFoundOption="KeepOriginal" />
+                <LookupAction LookupTableName="envio.csv 2" SecondTableExists="true" ColumnName="id_Pedido" LookupColumnName="id_pedido" ReturnColumnName="fecha_entrega" CreateNewColumn="true" ValueNotFoundOption="KeepOriginal" />
+                <LookupAction LookupTableName="pedido.csv" SecondTableExists="true" ColumnName="dispositivo" LookupColumnName="nombre_dispositivo" ReturnColumnName="id_dispositivo" CreateNewColumn="false" ValueNotFoundOption="KeepOriginal" />
+                <LookupAction LookupTableName="pedido.csv 2" SecondTableExists="true" ColumnName="metodo_Pago" LookupColumnName="nombre_metodo_pago" ReturnColumnName="id_metodo_pago" CreateNewColumn="false" ValueNotFoundOption="KeepOriginal" />
+                <LookupAction LookupTableName="devolucion.csv" SecondTableExists="true" ColumnName="id_Detalle" LookupColumnName="id_Detalle" ReturnColumnName="cantidad_Devuelta" CreateNewColumn="true" ValueNotFoundOption="KeepOriginal" />
+                <KeepRemoveColumnsAction Mode="Keep">
+                  <ColumnNames>
+                    <Item>id_Detalle</Item>
+                    <Item>id_Producto</Item>
+                    <Item>cantidad</Item>
+                    <Item>costo_Unitario</Item>
+                    <Item>precio_Unitario</Item>
+                    <Item>subtotal</Item>
+                    <Item>id_Cliente</Item>
+                    <Item>id_Campania</Item>
+                    <Item>metodo_Pago</Item>
+                    <Item>dispositivo</Item>
+                    <Item>fecha_Pedido</Item>
+                    <Item>id_envio</Item>
+                    <Item>fecha_envio</Item>
+                    <Item>fecha_entrega</Item>
+                    <Item>cantidad_Devuelta</Item>
+                  </ColumnNames>
+                </KeepRemoveColumnsAction>
+                <AddColumnsAction ColumnExistsOption="Rename">
+                  <Columns>
+                    <NameExpressionPair Name="id_fecha_pedido">
+                      <Expression Value="Year(Date([fecha_Pedido]))*10000 + Month(Date([fecha_Pedido]))*100 + Day(Date([fecha_Pedido]))" Type="Expression" />
+                    </NameExpressionPair>
+                  </Columns>
+                  <InsertPosition Position="Rightmost" />
+                </AddColumnsAction>
+                <ConvertDataTypesAction Conversion="TextToDate" FailureOption="KeepOriginal">
+                  <ColumnNames>
+                    <Item>fecha_envio</Item>
+                    <Item>fecha_entrega</Item>
+                  </ColumnNames>
+                  <Format Value="yyyy-MM-dd" Type="Text" />
+                </ConvertDataTypesAction>
+                <AddColumnsAction ColumnExistsOption="Rename">
+                  <Columns>
+                    <NameExpressionPair Name="id_fecha_envio">
+                      <Expression Value="Year([fecha_envio])*10000 + Month([fecha_envio])*100 + Day([fecha_envio])" Type="Expression" />
+                    </NameExpressionPair>
+                  </Columns>
+                  <InsertPosition Position="Rightmost" />
+                </AddColumnsAction>
+                <AddColumnsAction ColumnExistsOption="Rename">
+                  <Columns>
+                    <NameExpressionPair Name="id_fecha_entrega">
+                      <Expression Value="Year([fecha_entrega])*10000 + Month([fecha_entrega])*100 + Day([fecha_entrega])" Type="Expression" />
+                    </NameExpressionPair>
+                  </Columns>
+                  <InsertPosition Position="Rightmost" />
+                </AddColumnsAction>
+                <RenameColumnsAction>
+                  <Names>
+                    <NamePair Name1="id_Detalle" Name2="id_fact_ventas" />
+                    <NamePair Name1="id_Producto" Name2="id_producto" />
+                    <NamePair Name1="id_Cliente" Name2="id_cliente" />
+                    <NamePair Name1="id_Campania" Name2="id_campania" />
+                    <NamePair Name1="metodo_Pago" Name2="id_metodo_pago" />
+                    <NamePair Name1="dispositivo" Name2="id_dispositivo" />
+                    <NamePair Name1="costo_Unitario" Name2="costo_unitario" />
+                    <NamePair Name1="precio_Unitario" Name2="precio_unitario" />
+                    <NamePair Name1="cantidad_Devuelta" Name2="cantidad_devuelta" />
+                  </Names>
+                </RenameColumnsAction>
+                <ReorderColumnsAction>
+                  <PositionRules>
+                    <ColumnPositionRule Position="AfterColumn" AfterColumnName="id_producto" ColumnName="id_cliente" />
+                    <ColumnPositionRule Position="AfterColumn" AfterColumnName="id_cliente" ColumnName="id_fecha_pedido" />
+                    <ColumnPositionRule Position="AfterColumn" AfterColumnName="id_fecha_pedido" ColumnName="id_fecha_envio" />
+                    <ColumnPositionRule Position="AfterColumn" AfterColumnName="id_fecha_envio" ColumnName="id_fecha_entrega" />
+                    <ColumnPositionRule Position="AfterColumn" AfterColumnName="id_fecha_entrega" ColumnName="id_campania" />
+                    <ColumnPositionRule Position="AfterColumn" AfterColumnName="id_campania" ColumnName="id_envio" />
+                    <ColumnPositionRule Position="AfterColumn" AfterColumnName="id_envio" ColumnName="id_metodo_pago" />
+                    <ColumnPositionRule Position="AfterColumn" AfterColumnName="id_metodo_pago" ColumnName="id_dispositivo" />
+                    <ColumnPositionRule Position="AfterColumn" AfterColumnName="cantidad" ColumnName="subtotal" />
+                  </PositionRules>
+                </ReorderColumnsAction>
+                <KeepRemoveColumnsAction Mode="Remove" FailIfColumnsNotFound="false">
+                  <ColumnNames>
+                    <Item>fecha_Pedido</Item>
+                    <Item>fecha_envio</Item>
+                    <Item>fecha_entrega</Item>
+                  </ColumnNames>
+                </KeepRemoveColumnsAction>
+                <ExportDbAction AutoStatus="true" UseCustomSql="true" CustomSql="&#xA;TRUNCATE TABLE fact_ventas;" BatchSize="100" ColumnTypeMismatchOption="FailBatch" BatchFailureOption="Halt" ColumnMappingMode="Automatic">
+                  <DataConnectorDefinition IsShared="true" Type="List" Name="ConnectETL_TO_MYSQL" />
+                  <TableName Value="ecommerce_final.fact_ventas" Type="List" />
+                </ExportDbAction>
+                <LookupAction LookupTableName="devolucion.csv" SecondTableExists="true" ColumnName="id_fact_ventas" LookupColumnName="id_Detalle" ReturnColumnName="cantidad_Devuelta" CreateNewColumn="true" ValueNotFoundOption="MakeEmpty" />
+                <KeepRemoveColumnsAction Mode="Remove" FailIfColumnsNotFound="true">
+                  <ColumnNames>
+                    <Item>cantidad_devuelta</Item>
+                  </ColumnNames>
+                </KeepRemoveColumnsAction>
+                <ExportDbAction AutoStatus="true" UseCustomSql="true" CustomSql="TRUNCATE TABLE fact_ventas;&#xD;&#xA;" BatchSize="100" ColumnTypeMismatchOption="FailBatch" BatchFailureOption="Halt" ColumnMappingMode="Automatic">
+                  <DataConnectorDefinition IsShared="true" Type="List" Name="ConnectETL_TO_MYSQL" />
+                  <TableName Value="ecommerce_final.fact_ventas" Type="List" />
+                </ExportDbAction>
+              </Actions>
+              <AnalysisView Version="2" AppVersion="5.9.8.18" LayoutMode="Filters" />
+            </Table>
+            <Table Name="devolucion.csv" Left="878" Top="25" Width="500" Height="300" IsMinimized="false" ActiveActionIndex="0" ViewMode="Table">
+              <Actions>
+                <ImportDelimitedTextAction AutoStatus="true" DecimalSeparator="Point" ThousandSeparator="Space" ShowParsingErrors="false" IgnoreQuoting="false" NumericValuesTreatmentOption="AlwaysAsNumbers" ColumnsDontHaveHeaders="false" LoadAllColumns="true" AddColumnsWhenRowsHaveMoreValuesThanHeaders="false">
+                  <InputFileDefinition Mode="Single">
+                    <FileName Value="C:\Users\josue\Downloads\DATOS PROYECTO 1\devolucion.csv" Type="Path" />
+                  </InputFileDefinition>
+                  <SkipLines Value="0" Type="Number" />
+                  <MaxLines Value="0" Type="Number" />
+                  <Separator SeparatorType="Comma" />
+                  <Encoding EncodingType="UTF8" />
+                </ImportDelimitedTextAction>
+              </Actions>
+              <AnalysisView Version="2" AppVersion="5.9.8.18" LayoutMode="Filters" />
+            </Table>
+            <Table Name="envio.csv 2" Left="600" Top="521" Width="500" Height="300" IsMinimized="false" ActiveActionIndex="0" ViewMode="Table">
+              <Actions>
+                <ImportDelimitedTextAction AutoStatus="true" DecimalSeparator="Point" ThousandSeparator="Space" ShowParsingErrors="false" IgnoreQuoting="false" NumericValuesTreatmentOption="AlwaysAsNumbers" ColumnsDontHaveHeaders="false" LoadAllColumns="true" AddColumnsWhenRowsHaveMoreValuesThanHeaders="false">
+                  <InputFileDefinition Mode="Single">
+                    <FileName Value="C:\Users\josue\Downloads\DATOS PROYECTO 1\envio.csv" Type="Path" />
+                  </InputFileDefinition>
+                  <SkipLines Value="0" Type="Number" />
+                  <MaxLines Value="0" Type="Number" />
+                  <Separator SeparatorType="Comma" />
+                  <Encoding EncodingType="UTF8" />
+                </ImportDelimitedTextAction>
+              </Actions>
+              <AnalysisView Version="2" AppVersion="5.9.8.18" LayoutMode="Filters" />
+            </Table>
+            <Table Name="Imported table 1" Left="1119" Top="517" Width="500" Height="300" IsMinimized="false" ActiveActionIndex="0" ViewMode="Table">
+              <Actions>
+                <ImportDelimitedTextAction AutoStatus="true" DecimalSeparator="Point" ThousandSeparator="Space" ShowParsingErrors="false" IgnoreQuoting="false" NumericValuesTreatmentOption="AlwaysAsNumbers" ColumnsDontHaveHeaders="false" LoadAllColumns="true" AddColumnsWhenRowsHaveMoreValuesThanHeaders="false">
+                  <InputFileDefinition Mode="MultipleSelect" IncludeFilePaths="false">
+                    <FolderPath Value="C:\Users\josue\Downloads\DATOS PROYECTO 1" Type="Path" />
+                    <FileNames>
+                      <Item>detalle_pedido.csv</Item>
+                    </FileNames>
+                  </InputFileDefinition>
+                  <SkipLines Value="0" Type="Number" />
+                  <MaxLines Value="0" Type="Number" />
+                  <Separator SeparatorType="Comma" />
+                  <Encoding EncodingType="UTF8" />
+                </ImportDelimitedTextAction>
+              </Actions>
+              <AnalysisView Version="2" AppVersion="5.9.8.18" LayoutMode="Filters" />
+            </Table>
+            <Table Name="pedido.csv 3" Left="48" Top="522" Width="500" Height="300" IsMinimized="false" ActiveActionIndex="0" ViewMode="Table">
+              <Actions>
+                <ImportDelimitedTextAction AutoStatus="true" DecimalSeparator="Point" ThousandSeparator="Space" ShowParsingErrors="false" IgnoreQuoting="false" NumericValuesTreatmentOption="AlwaysAsNumbers" ColumnsDontHaveHeaders="false" LoadAllColumns="true" AddColumnsWhenRowsHaveMoreValuesThanHeaders="false">
+                  <InputFileDefinition Mode="Single">
+                    <FileName Value="C:\Users\josue\Downloads\DATOS PROYECTO 1\pedido.csv" Type="Path" />
+                  </InputFileDefinition>
+                  <SkipLines Value="0" Type="Number" />
+                  <MaxLines Value="0" Type="Number" />
+                  <Separator SeparatorType="Comma" />
+                  <Encoding EncodingType="UTF8" />
+                </ImportDelimitedTextAction>
+              </Actions>
+              <AnalysisView Version="2" AppVersion="5.9.8.18" LayoutMode="Filters" />
+            </Table>
+          </Tables>
+        </Group>
+      </Groups>
+      <Parameters />
+      <Report UseCustomFileNameForPdfExport="false" ShowPageBorders="true">
+        <Pages>
+          <Page Name="Page 1" IncludeInReport="true">
+            <ReportObjects />
+          </Page>
+        </Pages>
+        <PageSetup Orientation="Landscape" Margin="Narrow" Size="Letter" />
+      </Report>
+    </Module>
+  </Modules>
+  <ProtectedDataConnectors />
+  <Resources />
+</Project>
