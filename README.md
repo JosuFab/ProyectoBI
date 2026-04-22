@@ -96,7 +96,10 @@ ProyectoBI/
 │   ├── Modelo Dimensional Proyecto BI.png
 │   └── capturasProyectoBI.docx       # Evidencia de ejecución del ETL
 │
-├── 📄 ProyectoBI.pdf                 # Informe técnico del proyecto
+├── 📂 documentación/
+│   ├── PresentaciónBI.pdf            # Presentación final del proyecto
+│   └── ProyectoBI.pdf                # Informe técnico del proyecto
+│
 └── 📄 README.md
 ```
 
