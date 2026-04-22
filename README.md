@@ -100,6 +100,9 @@ ProyectoBI/
 │   ├── PresentaciónBI.pdf            # Presentación final del proyecto
 │   └── ProyectoBI.pdf                # Informe técnico del proyecto
 │
+├── 📂 presentaciom/
+│   ├── PresentaciónBI_compressed.pdf # Presentación final del proyecto
+│   
 └── 📄 README.md
 ```
 
