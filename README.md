@@ -97,7 +97,6 @@ ProyectoBI/
 │   └── capturasProyectoBI.docx       # Evidencia de ejecución del ETL
 │
 ├── 📂 documentación/
-│   ├── PresentaciónBI.pdf            # Presentación final del proyecto
 │   └── ProyectoBI.pdf                # Informe técnico del proyecto
 │
 ├── 📂 presentaciom/
